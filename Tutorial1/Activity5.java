@@ -30,10 +30,12 @@ public class Activity5 {
 
             int sumO = findNumber(arrayPrice, arrayQuality);
             System.out.println("Sum: " + sumO);
+            input.close();
         } catch (Exception e) {
             System.out.println("error");
             e.printStackTrace();
         }
+    
     }
 }
 
