@@ -1,5 +1,6 @@
-public class Circle {
+package Tutorial4;
 
+public class Circle {
     private double radius;
     private String color;
 
@@ -8,13 +9,14 @@ public class Circle {
         color = "blue";
     }
 
-    Circle(String color) {
-        radius = 2.0;
-        color = "red";
-    }
     Circle(double radius) {
-        radius = 1.0;
-        color = "red";
+        this.radius = radius;
+        color= "red";
+    }
+
+    Circle(double radius, String color) {
+        this.radius = radius;
+        this.color = color;
     }
 
     public double getRadius() {
@@ -25,12 +27,9 @@ public class Circle {
         return color;
     }
 
-    public double getArea() {
-        double area = Math.PI * radius * radius;
+    public double getArea(){
+        double area = Math.PI * radius * 2;
         return area;
     }
 
-    public static void main(String[] args) {
-
-    }
 }

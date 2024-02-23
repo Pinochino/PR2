@@ -1,5 +1,4 @@
 package Tutorial3;
-import  java.util.Scanner;
 public class Activity3 {
 
     public static void main(String[] args) {

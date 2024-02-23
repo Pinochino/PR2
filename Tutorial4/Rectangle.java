@@ -1,38 +1,46 @@
+package Tutorial4;
+
 public class Rectangle {
-    private float length;
-    private float width;
 
-    Rectangle(){
-        length = 1.0f;
-        width = 1.0f;
-    }
-    Rectangle(float length, float width){
-        this.length = length;
+    private float width = 1.0f;
+    private float length = 1.0f;
+
+    Rectangle() {}
+
+    Rectangle(float width, float length) {
         this.width = width;
+        this.length = length;
     }
 
-    public float getHeight(){
+    public float getLength() {
         return length;
     }
-    public void setHeight(float length){
+
+    public void setLength(float length) {
         this.length = length;
     }
-    public float getWidth(){
+
+    public float getWidth() {
         return width;
     }
-    public void setWidth(float width){
+
+    public void setWidth(float width) {
         this.width = width;
     }
-    public double getArea(){
-        double area = length * width;
+
+    public float getArea() {
+        float area = length * width;
         return area;
     }
-    public double getPerimeter(){
-        double perimeter = (length + width) * 2;
+
+    public float getPerimeter() {
+        float perimeter = 2 * (length + width);
         return perimeter;
     }
-    public String toString(){
-        return "The length is " + length + " and the width is " + width;
+
+    public String toString() {
+        return "The information of rectangle2 is " + "\n" + "Length is " + length + "\n" + "Width is " + width + "\n"
+                + "Area is " + getArea() + "\n" + "Perimeter is " + getPerimeter();
     }
 
 }

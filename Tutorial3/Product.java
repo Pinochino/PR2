@@ -33,6 +33,7 @@ public class Product {
         price = sc.nextDouble();
         System.out.println("Enter the discount: ");
         discount = sc.nextDouble();
+        sc.close();
     }
     public void display() {
         System.out.println("The product name: " + name);
