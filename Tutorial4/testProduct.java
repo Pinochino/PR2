@@ -1,3 +1,5 @@
+package Tutorial4;
+
 import java.util.Scanner;
 public class testProduct {
     public static void main(String[] args) {
