@@ -1,9 +1,5 @@
 package Tutorial6.Shape;
 
-import Tutorial6.Shape.Colors;
-import Tutorial6.Shape.Point2D;
-import Tutorial6.Shape.Rectangle;
-
 public class Square extends Rectangle {
     private  double side;
     Square(){}
