@@ -1,0 +1,22 @@
+package lect12b.web;
+
+/**
+ * This class contains fake code which serves to deliver ideas only
+ */
+public class Factory {
+    public static EmailSender createEmailSender() {
+        return new GmailEmailSender();
+        // return new OutlookEmailSender();
+        // return new YahooEmailSender();
+    }
+
+    public static DBConnection createDBConnection() {
+        return MySQLConnection.getInstance();
+        // return OracleConnection.getInstance();
+    }
+
+    public static ImageResizer createImageResizer() {
+        return new FreeImageResizer();
+        // return new OpenImageResizer();
+    }
+}
