@@ -1,3 +1,4 @@
+
 import static utils.TextIO.getln;
 import static utils.TextIO.putln;
 import static utils.TextIO.writeFile;
@@ -58,6 +59,60 @@ public class PCProg {
 		putln(report);
 		writeStandardOutput();
 	}
+
+	public void createObjects() {
+		Scanner sc = new Scanner(System.in);
+
+		try {
+			while (true) {
+				System.out.println("Enter the model: ");
+				String model = sc.nextLine().trim();
+				if (model.isEmpty() || model.length() > 20) {
+					throw new NotPossibleException("Please enter a model (length above 20 characters): ");
+				}
+				sc.nextLine();
+
+				System.out.println("Enter the year: ");
+				int year = sc.nextInt();
+				if (year < 1984) {
+					throw new NotPossibleException("Please enter a year after 1984: ");
+				}
+
+				sc.nextLine();
+
+				System.out.println("Enter the manufacturer: ");
+				String manufacturer = sc.nextLine().trim();
+				if (manufacturer.length() > 15) {
+					throw new NotPossibleException("Please enter a manufacturer (up to 15 characters): ");
+				}
+
+				Set<String> components = new Set<>();
+				System.out.println("Enter components (press Enter without input to finish): ");
+				while (true) {
+					String component = sc.nextLine().trim();
+					if (component.isEmpty()) {
+						break;
+					}
+					components.insert(component);
+				}
+
+				PC pc = new PC(model, year, manufacturer, components);
+				objs.insert(pc);
+
+				System.out.println("Do you want to continue (Y/N): ");
+				String choice = sc.nextLine().trim();
+				if (!choice.equals(YES)) {
+					break;
+				}
+			}
+		} catch (Exception e) {
+			System.out.println("Invalid input. Please enter the correct data type.");
+			createObjects();
+		}
+	}
+
+
+
 
 	/**
 	 * The run method
