@@ -2,26 +2,29 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class DAO<Entity> {
-    private List<Entity> data;
+public abstract class DAO<T> {
+    private List<T> source;
 
     public DAO() {
-        data = new ArrayList<>();
+        source = new ArrayList<>();
     }
 
-    public List<Entity> getList() {
-        return data;
+    public void add(T obj){
+        source.add(obj);
     }
 
-    public void add(Entity entity) {
-        data.add(entity);
+    public void remove(T obj){
+        source.remove(obj);
     }
 
-    public void remove(Entity entity) {
-        data.remove(entity);
+    /**
+     * If obj is found in this.source, update this object
+     * @param obj the object to be updated
+     *
+     */
+    public  abstract T find(Serializable id);
+    public abstract void update(T obj);
+    public  List<T> getList(){
+        return  source;
     }
-
-    public abstract void update(Entity entity);
-
-    public abstract Entity find(Serializable id);
 }

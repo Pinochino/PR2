@@ -1,26 +1,30 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+public class ProductDAO extends  DAO<Product>{
 
-public class ProductDAO<Product extends  DAO>{
-    private List<Product> list;
-    private Serializable id;
-
-    public ProductDAO() {
-        super();
-    }
-
-    public void update(Product p1){
-        for (int i = 0; i < list.size() ; i++) {
-            list.add(p1);
-        }
-    }
-    public Product find(Product p1){
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) == p1){
-                return p1;
+    @Override
+    public Product find(Serializable id) {
+        if (id instanceof String){
+            String name = (String) id;
+            for (Product p : getList()) {
+                if (p.getName().equals(name)){
+                    return p;
+                }
             }
         }
         return null;
     }
+
+
+
+    @Override
+    public void update(Product obj) {
+        Product p = find(obj.getName());
+        if (p != null){
+            p.setPrice(obj.getPrice());
+        }
+    }
+
+
 }
