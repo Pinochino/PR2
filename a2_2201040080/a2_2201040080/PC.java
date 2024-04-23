@@ -1,25 +1,35 @@
-
-import utils.DomainConstraint;
-
 import java.util.Objects;
 
 public class PC {
-    @DomainConstraint(type = "String", mutable = true, optional = false, length = 20, min = Double.NaN, max = Double.NaN)
     private String model;
-
-    @DomainConstraint(type = "Integer", mutable = false, optional = false, length = -1, min = 1984, max = Double.NaN)
     private Integer year;
-
-    @DomainConstraint(type = "String", mutable = false, optional = false, length = 15, min = Double.NaN, max = Double.NaN)
     private String manufacturer;
-
-    @DomainConstraint(type = "String", mutable = true, optional = false, length = -1, min = Double.NaN, max = Double.NaN)
     private Set<String> Comps;
 
     public PC(String model, int year, String manufacturer, Set<String> comps)  {
         this.model = model;
+        this.year = year;
+        this.manufacturer = manufacturer;
         this.Comps = comps;
-        if (!isValidatorLengthModel() && !isValidatorMinYear() ){
+    }
+    public PC(String model, String manufacturer,Set<String> comps)  {
+        this.model = model;
+        this.manufacturer = manufacturer;
+        this.Comps = comps;
+    }
+
+    public PC(String model, int year,Set<String> comps)  {
+        this.model = model;
+        this.year = year;
+        this.Comps = comps;
+    }
+
+    public PC(String model, Integer year, String manufacturer, Set<String> comps) throws Exception {
+        this.model = model;
+        this.year = year;
+        this.manufacturer = manufacturer;
+        Comps = comps;
+        if (!isValidatorLengthModel() || !isValidatorMinYear() || !invalidComponent() || !isValidComps() || !isValidatorLengthManufacturer()){
             try {
                 throw  new Exception("Please enter the new ones");
             } catch (Exception e) {
@@ -29,23 +39,14 @@ public class PC {
 
     }
 
-    public PC(String model, Integer year, String manufacturer, Set<String> comps) throws Exception {
-        this.model = model;
-        this.year = year;
-        this.manufacturer = manufacturer;
-        Comps = comps;
-        if (!invalidComponent()){
-            throw  new Exception("Please enter the new ones");
-        }
-
-    }
-
     public String getModel() {
         return this.model;
     }
 
     public void setModel(String model) {
-        this.model = model;
+        if (isValidatorLengthModel()){
+            this.model = model;
+        }
     }
 
     public Integer getYear() {
@@ -53,7 +54,7 @@ public class PC {
     }
 
     public String getManufacturer() {
-        return manufacturer;
+        return this.manufacturer;
     }
 
     public Set<String> getComps() {
@@ -61,29 +62,21 @@ public class PC {
     }
 
     public void setComps(Set<String> comps) {
-        Comps = comps;
+       if (isValidComps()){
+           this.Comps = comps;
+       }
     }
 
     public boolean isValidatorLengthModel(){
-        if (this.getModel().length() > 20 || this.getModel().isEmpty()){
-            return false;
-        }
-        return  true;
+        return this.getModel().length() <= 20 && !this.getModel().isEmpty() && this.getModel() != null;
     }
 
     public boolean isValidatorMinYear(){
-
-        if (this.getYear() > 1984){
-            return false;
-        }
-        return  true;
+        return this.getYear() <= 1984;
     }
 
     public boolean isValidatorLengthManufacturer(){
-        if (this.getManufacturer().length() > 15 || getManufacturer().isEmpty()){
-            return false;
-        }
-        return  true;
+        return this.getManufacturer().length() <= 15 && !getManufacturer().isEmpty() && this.getManufacturer() != null;
     }
 
     public boolean isValidComps(){
@@ -92,25 +85,21 @@ public class PC {
     public boolean invalidComponent(){
         return isValidatorMinYear() && isValidatorLengthModel() &&  isValidComps();
     }
-    @Override
-    public boolean equals(Object obj) {
-         if (this == obj) return true;
-         if (!(obj instanceof PC)) return false;
-         PC p = (PC) obj;
-         return Objects.equals(model, p.model) &&
-                 Objects.equals(year, p.year) &&
-                 Objects.equals(manufacturer, p.manufacturer) &&
-                 Objects.equals(Comps, p.Comps);
-    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PC pc = (PC) o;
+        return Objects.equals(model, pc.model) && Objects.equals(year, pc.year) && Objects.equals(manufacturer, pc.manufacturer) && Objects.equals(Comps, pc.Comps);
+    }
 
     @Override
     public String toString() {
-        return "PC{" +
-                "model='" + model + '\'' +
-                ", year=" + year +
-                ", manufacturer='" + manufacturer + '\'' +
-                ", Comps=" + Comps +
-                '}';
+        return "PC<" + model  +
+                ", " + year +
+                ", " + manufacturer  +
+                ", " + Comps +
+                '>';
     }
 }

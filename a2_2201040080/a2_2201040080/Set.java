@@ -1,193 +1,136 @@
+import java.util.AbstractCollection;
+import java.util.Iterator;
 import java.util.Vector;
 
-import utils.DOpt;
-import utils.DomainConstraint;
-import utils.OptType;
-import utils.collections.Collection;
-
 /**
- * @overview Generic set are mutable, unbounded sets of elements of a given
- *           type. Element type can be Object.
- * 
- * @attributes elements Set<T> Vector<T>
- * @object A typical Set<T> object is c={x1,...,xn}, where x1,...,xn are
- *         elements of type T.
- * @abstract_properties optional(elements) = false /\ for all x in elements. x
- *                      is T /\ for all x, y in elements. x.equals(y)
- * @author dmle
+ * Generic sets are mutable, unbounded sets of elements of a given type.
+ * Element type can be Object.
  */
-public class Set<T> implements Collection<T>{
-	@DomainConstraint(type = "Vector", optional = false)
-	private Vector<T> elements; // use generic syntax
+public class Set<T> extends AbstractCollection<T> {
+    private final Vector<T> elements; // use generic syntax
 
-	// constructor methods
-	/**
-	 * @effects initialise <tt>this</tt> to be empty
-	 */
-	public Set() {
-		//
-		elements = new Vector<>();
-	}
+    /**
+     * Default constructor: initialise this to be an empty Set
+     */
+    public Set() {
+        elements = new Vector<>();
+    }
 
-	/**
-	 * @modifies <tt>this</tt>
-	 * @effects
-	 * 
-	 *          <pre>
-	 *   if x is already in this 
-	 *     do nothing 
-	 *   else 
-	 *     add x to this, i.e., this_post = this + {x}
-	 *          </pre>
-	 */
-	@DOpt(type = OptType.MutatorAdd)
-	public void insert(T x) {
-		if (getIndex(x) < 0)
-			elements.add(x); // auto-boxing
-	}
+    /**
+     * If x is already in this Set, do nothing.
+     * Otherwise, add x to this Set.
+     */
+    public void insert(T x) {
+        if (getIndex(x) < 0)
+            elements.add(x); // auto-boxing
+    }
 
-	/**
-	 * @modifies <tt>this</tt>
-	 * @effects
-	 * 
-	 *          <pre>
-	 *   if x is not in this 
-	 *     do nothing 
-	 *   else 
-	 *     remove x from this, i.e. 
-	 *     this_post = this - {x}
-	 *          </pre>
-	 */
-	@DOpt(type = OptType.MutatorRemove)
-	public void remove(T x) {
-		int i = getIndex(x);
-		if (i < 0)
-			return;
-		elements.set(i, elements.lastElement());
-		elements.remove(elements.size() - 1);
-	}
+    /**
+     * If x is not in this Set, do nothing.
+     * Otherwise, remove x from this Set.
+     */
+    public boolean remove(Object x) {
+        int i = getIndex(x);
+        if (i < 0)
+            return false;
+        elements.set(i, elements.lastElement());
+        elements.remove(elements.size() - 1);
+        return true;
+    }
 
-	/**
-	 * @effects
-	 * 
-	 *          <pre>
-	 *  if x is in this 
-	 *    return true 
-	 *  else 
-	 *    return false
-	 *          </pre>
-	 */
-	@DOpt(type = OptType.ObserverContains)
-	public boolean isIn(T x) {
-		return (getIndex(x) >= 0);
-	}
+    /**
+     * @return true if x is in this Set, false otherwise.
+     */
+    public boolean isIn(T x) {
+        return (getIndex(x) >= 0);
+    }
 
-	/**
-	 * @effects return the cardinality of <tt>this</tt>
-	 */
-	@DOpt(type = OptType.ObserverSize)
-	public int size() {
-		return elements.size();
-	}
+    /**
+     * @return the number of elements in this Set
+     */
+    public int size() {
+        return elements.size();
+    }
 
-	/**
-	 * @effects if this is not empty return a new Vector<T> of elements of this else
-	 *          return null
-	 */
-	@DOpt(type = OptType.Observer)
-	public Vector<T> getElements() {
-		if (size() == 0)
-			return null;
-		else {
-			Vector<T> els = new Vector<>();
-			for (T e : elements)
-				els.add(e);
-			return els;
-		}
-	}
+    /**
+     * @return a new Vector<T> of elements of this Set if this Set is not empty.
+     * Return null otherwise.
+     */
+    public Vector<T> getElements() {
+        if (size() == 0)
+            return null;
+        else {
+            Vector<T> els = new Vector<>();
+            for (T e : elements)
+                els.add(e);
+            return els;
+        }
+    }
 
-	/**
-	 * @effects
-	 * 
-	 *          <pre>
-	 *  if this is empty 
-	 *    throw an IllegalStateException
-	 *  else 
-	 *    return an arbitrary element of this
-	 *          </pre>
-	 */
-	public T choose() throws IllegalStateException {
-		if (size() == 0)
-			throw new IllegalStateException("Set.choose: set is empty");
-		return elements.lastElement();
-	}
+    /**
+     * @return an arbitrary element of this Set
+     * @throws IllegalStateException if this Set is empty
+     */
+    public T choose() throws IllegalStateException {
+        if (size() == 0)
+            throw new IllegalStateException("Set.choose: set is empty");
+        return elements.lastElement();
+    }
 
-	/**
-	 * @effects
-	 * 
-	 *          <pre>
-	 *  if x is in this 
-	 *    return the index where x appears 
-	 *  else 
-	 *    return -1
-	 *          </pre>
-	 */
-	private int getIndex(T x) {
-		for (int i = 0; i < elements.size(); i++) {
-			if (x.equals(elements.get(i)))
-				return i;
-		}
+    /**
+     * @return the index where x appears if x is in this Set.
+     * Return -1 otherwise.
+     */
+    private int getIndex(Object x) {
+        for (int i = 0; i < elements.size(); i++) {
+            if (x.equals(elements.get(i)))
+                return i;
+        }
 
-		return -1;
-	}
+        return -1;
+    }
 
-	@Override
-	public String toString() {
-		if (size() == 0)
-			return "Set{ }";
+    @Override
+    public Iterator<T> iterator() {
+        return elements.iterator();
+    }
 
-		String s = "Set{" + elements.elementAt(0).toString();
-		for (int i = 1; i < size(); i++) {
-			s = s + "," + elements.elementAt(i).toString();
-		}
+    @Override
+    public String toString() {
+        if (size() == 0)
+            return "Set { }";
 
-		return s + "}";
-	}
+        String s = "Set {" + elements.elementAt(0).toString();
+        for (int i = 1; i < size(); i++) {
+            s = s + ", " + elements.elementAt(i).toString();
+        }
 
-	/**
-	 * @effects
-	 * 
-	 *          <pre>
-	 *   if this satisfies abstract properties
-	 *     return true 
-	 *   else
-	 *     return false
-	 *          </pre>
-	 */
-	public boolean repOK() {
-		if (elements == null)
-			return false;
+        return s + "}";
+    }
 
-		for (int i = 0; i < elements.size(); i++) {
-			T x = elements.get(i);
+    /**
+     * @return true if this object' state is valid.
+     * Return false otherwise.
+     */
+    public boolean repOK() {
+        if (elements == null)
+            return false;
 
-			/*
-			 * omitted due to the use of generic if (!(x instanceof T)) return false;
-			 */
+        for (int i = 0; i < elements.size(); i++) {
+            T x = elements.get(i);
+            for (int j = i + 1; j < elements.size(); j++) {
+                if (elements.get(j).equals(x))
+                    return false;
+            }
+        }
+        return true;
+    }
 
-			for (int j = i + 1; j < elements.size(); j++) {
-				if (elements.get(j).equals(x))
-					return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Set)) return false;
-		Set<?> set = (Set<?>) o;
-		return getElements().equals(set.getElements());
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Set)) return false;
+        Set<?> set = (Set<?>) o;
+        return getElements().equals(set.getElements());
+    }
 }

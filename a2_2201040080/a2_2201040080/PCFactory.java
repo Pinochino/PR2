@@ -1,17 +1,23 @@
 public class PCFactory {
+    private static PCFactory INSTANCE;
 
-    public static PCFactory INSTANCE;
+    public PCFactory() {
+    }
 
-    private PCFactory(){}
-   public static  PCFactory getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new PCFactory();
+    private static PCFactory getInstance(){
+        if (INSTANCE == null){
+            PCFactory instance = PCFactory.getInstance();
         }
-           return INSTANCE;
-   }
+        return INSTANCE;
+    }
 
-   public PC createPC(String model, int year, String manufacturer, Set<String> comps) throws Exception{
+    public PC createObject(String model, int year, String manufacturer, Set<String> comps) throws Exception{
         return new PC(model, year, manufacturer, comps);
-   }
-
+    }
+    public PC createObject(String model,  String manufacturer, Set<String> comps) throws Exception{
+        return new PC(model, manufacturer, comps);
+    }
+    public PC createObject(String model,  int year, Set<String> comps) throws Exception{
+        return new PC(model, year, comps);
+    }
 }
