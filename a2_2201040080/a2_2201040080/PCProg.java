@@ -46,7 +46,7 @@ public class PCProg {
                 }
 
                 Set<String> components = new Set<>();
-                System.out.println("Please enter the components ");
+                System.out.println("Please enter the components: ");
 
                 String comp;
                 while (!(comp = sc.nextLine().trim()).isEmpty()){

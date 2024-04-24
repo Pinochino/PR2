@@ -20,7 +20,7 @@ public class PCReport {
             } else {
                 String e = index.substring(0, 47) + "...]";
                 reportBuilder.append(String.format("%3s %20s %6d %15s %-50s\n", i + 1, objs[i].getModel(),
-                        objs[i].getYear(), objs[i].getManufacturer(), objs[i].getComps().getElements()));
+                        objs[i].getYear(), objs[i].getManufacturer(), e));
             }
         }
         report = reportBuilder.toString();
