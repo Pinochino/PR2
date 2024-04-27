@@ -11,8 +11,7 @@ public class GreetingConversation {
         return INSTANCE;
     }
 
-    public static void main(String[] args) {
-
+    public void run() {
         Person p1 = new Person(1, "Quan Dang");
         Person p2 = new Person(2, "Thuan Nguyen");
         MobilePhone m1 = new MobilePhone("Apple", "M-ABC-123", Color.Yellow, 2008, false);
@@ -24,5 +23,10 @@ public class GreetingConversation {
         System.out.println(p1);
         System.out.println(p2);
         // TODO: test more methods (all the public ones)
+    }
+
+    public static void main(String[] args){
+        GreetingConversation gc = GreetingConversation.getInstance();
+        gc.run();
     }
 }

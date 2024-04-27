@@ -1,5 +1,7 @@
+package Tutorial5.Person;
+
 public class Student extends Person {
-    private String program;
+    private final String program;
     private int year;
     private double fee;
 
@@ -36,7 +38,7 @@ public class Student extends Person {
     }
 
     public static void main(String[] args) {
-        Tutorial10.Student s1 = new Tutorial10.Student("Giang", "HaiPhong", "Counting ", 300, 4);
+       Student s1 = new Student("Gang", "HaiPhong", "Counting ", 300, 4);
         System.out.println(s1);
     }
 }

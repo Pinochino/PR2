@@ -1,3 +1,5 @@
+package Tutorial5.Person;
+
 public class Staff extends Person {
     private String school;
     private double pay;

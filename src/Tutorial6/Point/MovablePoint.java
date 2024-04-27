@@ -1,4 +1,8 @@
-public class MovablePoint extends  Point implements Movable{
+package Tutorial6.Point;
+
+import java.awt.*;
+
+public class MovablePoint extends Point implements Movable{
     private float xSpeed;
     private float ySpeed;
 

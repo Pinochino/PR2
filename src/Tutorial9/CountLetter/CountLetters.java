@@ -1,3 +1,5 @@
+package Tutorial9.CountLetter;
+
 import java.util.Scanner;
 
 public class CountLetters {

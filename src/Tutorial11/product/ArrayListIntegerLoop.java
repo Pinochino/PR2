@@ -1,3 +1,5 @@
+package Tutorial11.product;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-import Tutorial4.Point2D;
+import Tutorial4.src.Point2D;
 
 public interface SpecialAbility {
     abstract void transform();

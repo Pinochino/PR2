@@ -1,3 +1,5 @@
+package Tutorial6.Point;
+
 public interface Movable {
     abstract  void moveUp();
     abstract void moveDown();

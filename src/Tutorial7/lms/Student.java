@@ -1,9 +1,11 @@
+package Tutorial7.lms;
+
 import  java.util.List;
 public class Student {
 
-    private int studentID;
-    private String name;
-    private  String dateOfBirth;
+    private final int studentID;
+    private final String name;
+    private final String dateOfBirth;
     private double gpa;
     private List<Course> enrolledCourses;
 

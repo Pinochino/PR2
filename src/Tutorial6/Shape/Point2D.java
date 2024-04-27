@@ -33,11 +33,9 @@ public class Point2D{
     }
 
     public double getDistanceTo(double x, double y){
-        double distance = Math.sqrt(Math.pow((x-getX()), 2) + Math.pow((y-getY()), 2));
-        return distance;
+        return Math.sqrt(Math.pow((x-getX()), 2) + Math.pow((y-getY()), 2));
     }
     public double getDistanceTo(Point2D point){
-        double distance = Math.sqrt(Math.pow(point.getX(), 2) + Math.pow(point.getY(), 2));
-        return distance;
+        return Math.sqrt(Math.pow(point.getX(), 2) + Math.pow(point.getY(), 2));
     }
 }

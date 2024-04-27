@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="MobilePhone">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/tut12-starter/out/production/tut12-starter/tut12/greeting/MobilePhone.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

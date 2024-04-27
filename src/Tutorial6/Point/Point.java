@@ -1,3 +1,5 @@
+package Tutorial6.Point;
+
 public class Point {
    private float x;
    private float y;

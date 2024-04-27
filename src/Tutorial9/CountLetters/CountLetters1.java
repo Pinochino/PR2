@@ -1,3 +1,5 @@
+package Tutorial9.CountLetters;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;

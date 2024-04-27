@@ -11,7 +11,7 @@ public class MobilePhone {
     private Color color;
     private int year;
     private boolean guaranteed;
-    private static String colorCode;
+    private String colorCode;
 
     // Operations
 
@@ -31,6 +31,7 @@ public class MobilePhone {
         this.manName = n;
         this.model = m;
         this.color = c;
+        this.colorCode = convertColorToCode(c);
         this.year = y;
         this.guaranteed = g;
     }
@@ -44,23 +45,18 @@ public class MobilePhone {
         switch (c) {
             case 'R':
                 newColor = Color.Red;
-                colorCode = "#FF0000";
                 break;
             case 'O':
                 newColor = Color.Orange;
-                colorCode = "#FFA500";
                 break;
             case 'Y':
                 newColor = Color.Yellow;
-                colorCode = "#FFFF00";
                 break;
             case 'B':
                 newColor = Color.Blue;
-                colorCode = "#0000FF";
                 break;
             case 'P':
                 newColor = Color.Purple;
-                colorCode = "#800080";
                 break;
             default:
                 newColor = null;
@@ -81,6 +77,7 @@ public class MobilePhone {
     public boolean setColor(Color c) {
         if (validateColor(c)) {
             this.color = c;
+            this.colorCode = convertColorToCode(c);
             return true;
         } else {
             return false;
@@ -90,6 +87,23 @@ public class MobilePhone {
     public boolean setGuarantee(boolean g) {
         this.guaranteed = g;
         return true;
+    }
+
+    // Convert color to color code
+    public String convertColorToCode(Color c){
+        switch (c){
+            case Red:
+                return "#FF0000";
+            case Purple:
+                return "#A020F0";
+            case Orange:
+                return "#FFA500";
+            case Yellow:
+                return "#FFFF00";
+            case Blue:
+                return "#0000FF";
+        }
+        return null;
     }
 
     // Observers
@@ -117,9 +131,6 @@ public class MobilePhone {
         return colorCode;
     }
 
-    public void setColorCode(String colorCode) {
-        this.colorCode = colorCode;
-    }
 
     // Helpers
     private boolean validateManName(String n) {
@@ -148,11 +159,18 @@ public class MobilePhone {
 
     // Default methods
     // Example toString: "MobilePhone: <Samsung, S20, P, 2019, true>"
+
+
     @Override
     public String toString() {
-        return "MobilePhone: <" + manName +
-                ", " + model + ", " + color +
-                ", " + year + ", " + guaranteed + '>';
+        return "MobilePhone{" +
+                "manName='" + manName + '\'' +
+                ", model='" + model + '\'' +
+                ", color=" + color +
+                ", year=" + year +
+                ", guaranteed=" + guaranteed +
+                ", colorCode='" + colorCode + '\'' +
+                '}';
     }
 
     @Override

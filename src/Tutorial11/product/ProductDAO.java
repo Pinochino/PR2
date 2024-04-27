@@ -1,12 +1,11 @@
+package Tutorial11.product;
+
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 public class ProductDAO extends  DAO<Product>{
 
     @Override
     public Product find(Serializable id) {
-        if (id instanceof String){
-            String name = (String) id;
+        if (id instanceof String name){
             for (Product p : getList()) {
                 if (p.getName().equals(name)){
                     return p;

@@ -1,4 +1,6 @@
-import Tutorial10.Student;
+package Tutorial7.lms;
+
+import Tutorial10.src.Student;
 
 import java.util.List;
 

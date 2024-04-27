@@ -1,3 +1,5 @@
+package Tutorial5.POINT;
+
 public class testPoint {
     public static void main(String[] args) {
         Point p1 = new Point(1.5f, 1.5f);

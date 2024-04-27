@@ -1,9 +1,11 @@
+package Tutorial11.product;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class DAO<T> {
-    private List<T> source;
+    private final List<T> source;
 
     public DAO() {
         source = new ArrayList<>();

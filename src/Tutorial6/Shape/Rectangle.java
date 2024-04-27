@@ -1,8 +1,5 @@
 package Tutorial6.Shape;
 
-import Tutorial6.Shape.Colors;
-import Tutorial6.Shape.Point2D;
-
 public class Rectangle extends Shape2D {
     private double length;
     private double width;
@@ -47,13 +44,11 @@ public class Rectangle extends Shape2D {
     }
     @Override
     public double getArea(){
-        double area = width * length;
-        return area;
+        return width * length;
     }
     @Override
     public double getPerimeter(){
-        double perimeter = (length + width) * 2;
-        return perimeter;
+        return (length + width) * 2;
     }
 
     public String toString(){

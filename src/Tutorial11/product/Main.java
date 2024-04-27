@@ -1,3 +1,5 @@
+package Tutorial11.product;
+
 public class Main {
     public static void main(String[] args) {
         Product p1 = new Product("Iphone", 499.2);

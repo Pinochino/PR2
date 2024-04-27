@@ -1,4 +1,4 @@
-// Factorials.java
+package Tutorial9.CountLetter;// Factorials.java
 //
 // Reads integers from the user and prints the factorial of each.
 //
