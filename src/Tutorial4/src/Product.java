@@ -65,7 +65,7 @@ public class Product {
     }
 
     public static void main(String[] args) {
-        Tutorial3.src.Product p1 = new Tutorial3.src.Product();
+        Product p1 = new Product();
         p1.input();
         p1.display();
         System.out.println("The import tax is: " + p1.getImportTax());

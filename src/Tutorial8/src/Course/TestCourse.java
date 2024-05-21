@@ -7,12 +7,14 @@ import java.util.List;
 
 public class TestCourse {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         List<Course> list = new ArrayList<>();
-        Student s1 = new Student(1, "Duong", "23/11/2004", "Duong@gmail.com", "0335250189", "HaiPhong", list, 10.6);
+        Student s1 = new Student(1, "2201040080", "Hung", "22/11/2004");
 
         Course c1 = new Course(1, "Information", 320.0, Department.INFORMATION, Semester.AUTUMN, list);
         list.add(c1);
         System.out.println(c1);
+        System.out.println(s1);
+
     }
 }

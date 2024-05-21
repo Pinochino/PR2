@@ -1,4 +1,4 @@
-package Tutorial11.product;
+package Tutorial11.src;
 
 import java.io.Serializable;
 public class ProductDAO extends  DAO<Product>{

@@ -1,7 +1,5 @@
 package Tutorial4.src;
 
-import Tutorial3.src.Product;
-
 import java.util.Scanner;
 public class testProduct {
     public static void main(String[] args) {

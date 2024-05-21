@@ -1,8 +1,8 @@
 package Tutorial4.src;
 
 public class Circle {
-    private double radius;
-    private String color;
+    private final double radius;
+    private final String color;
 
     Circle() {
         radius = 2.0;
@@ -28,8 +28,7 @@ public class Circle {
     }
 
     public double getArea(){
-        double area = Math.PI * radius * 2;
-        return area;
+        return Math.PI * radius * 2;
     }
 
 }
